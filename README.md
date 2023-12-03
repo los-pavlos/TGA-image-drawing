@@ -53,9 +53,16 @@ Vykreslí orotovaný obdelník s levým horním rohem v bodě x, y o sířce wid
 ```
 line 10,10,50,40,255,255,0,255
 rectangle 10,10,100,100,255,0,0,255
+save
 circle 20,20,40,120,120,120,128
 triangle 50,50,20,0,255,0,255
 rotated-rectangle 45,80,80,50,50,255,0,255,128
-save
 exit
-```  
+```
+1. line vykreslí čáru z bodu 10,10 do bodu 50,40 o barvě 255,255,0 a hodnotě alpha 255
+2. rectangle vykreslí obdelník s levým horním rohem v bodě 10,10 šířce 100, výšce 100 o barvě 255,0,0 a hodnotě alpha 255
+3. save uloží obrázek na disk do souboru na adrese zadané při spuštění programu
+4. circle vykreslí kruh se středem v bodě 20,20 s poloměrem 40 o barvě 120,120,120 a hodnotě alpha 128
+5. triangle vykreslí rovnostranný trojúhelník se středem v bodě 50,50 o délce strany 20 o barvě 0,255,0 a hodnotě alpha 255
+6. rotated-rectangle vykreslí obdelník se středem na pozici 80,80 s rotací 45 stupňů o šířce 50, výšce 50, barvě 255,0,255 a hodnotě alpha 128
+7. exit uloží obrázek na disk do souboru na adrese zadané při spuštění programu a ukončí probram
