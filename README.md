@@ -50,7 +50,7 @@ Vykreslí orotovaný obdelník s levým horním rohem v bodě x, y o sířce wid
 ##### Pořadí parametrů
 - angle,x,y,width,height,r,g,b,a
 ## ukázkové použití
-```sh
+```
 line 10,10,50,40,255,255,0,255
 rectangle 10,10,100,100,255,0,0,255
 circle 20,20,40,120,120,120,128
