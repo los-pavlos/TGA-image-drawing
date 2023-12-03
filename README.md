@@ -8,7 +8,7 @@ Jedná se o konzolovou aplikaci, sloužící k zakreslování jednoduchých geom
 3. pomocí příkazu ./projekt spustíte program
 ### parametry programu
 - tyto parametry je nutno uvést při spuštění programu
-- 
+ 
 --output zde uveďte kde chcete výstupní TGA soubor uložit a jeho název
   
 --width zde uveďte šířku obrázku v pixelech
