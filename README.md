@@ -16,6 +16,7 @@ Jedná se o konzolovou aplikaci, sloužící k zakreslování jednoduchých geom
 --height zde uveďte výšku programu v pixelech
 
 ukázka spuštění programu s parametry:
+
 `
 ./projekt --output output.tga --width 400 --height 400
 `
