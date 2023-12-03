@@ -46,7 +46,7 @@ Vykreslí rovnostranný trojuhelník se středem v bodě x, y o poloměru width
 ##### Pořadí parametrů
 - x,y,width,r,g,b,a
 ### rotated-rectangle
-Vykreslí orotovaný obdelník s levým horním rohem v bodě x, y o sířce width, výšce height a rotací angle
+Vykreslí orotovaný obdelník se středem v bodě x, y o sířce width, výšce height a rotací angle
 ##### Pořadí parametrů
 - angle,x,y,width,height,r,g,b,a
 ## ukázkové použití
