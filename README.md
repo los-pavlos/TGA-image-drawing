@@ -51,6 +51,7 @@ Vykreslí orotovaný obdelník s levým horním rohem v bodě x, y o sířce wid
 - angle,x,y,width,height,r,g,b,a
 ## ukázkové použití
 ```
+./projekt --output out.tga --width 900 --height 450
 line 10,10,50,40,255,255,0,255
 rectangle 10,10,100,100,255,0,0,255
 save
@@ -59,8 +60,9 @@ triangle 50,50,20,0,255,0,255
 rotated-rectangle 45,80,80,50,50,255,0,255,128
 exit
 ```
+- ./projekt je samotné spuštění programu, soubor o šířce 900 a výšce 450 se bude ukládat do souboru out.tga
 - line vykreslí čáru z bodu 10,10 do bodu 50,40 o barvě 255,255,0 a hodnotě alpha 255
--  rectangle vykreslí obdelník s levým horním rohem v bodě 10,10 šířce 100, výšce 100 o barvě 255,0,0 a hodnotě alpha 255
+- rectangle vykreslí obdelník s levým horním rohem v bodě 10,10 šířce 100, výšce 100 o barvě 255,0,0 a hodnotě alpha 255
 - save uloží obrázek na disk do souboru na adrese zadané při spuštění programu
 - circle vykreslí kruh se středem v bodě 20,20 s poloměrem 40 o barvě 120,120,120 a hodnotě alpha 128
 - triangle vykreslí rovnostranný trojúhelník se středem v bodě 50,50 o délce strany 20 o barvě 0,255,0 a hodnotě alpha 255
