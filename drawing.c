@@ -1,0 +1,195 @@
+#include "drawing.h"
+
+void swapInt(int *a, int *b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+// ukladani TGA souboru
+void saveTGA(const char *filename, int width, int height, Pixel *pixels)
+{
+
+    FILE *tgaFile = fopen(filename, "wb");
+    if (tgaFile == NULL) {
+        printf("Chyba při otevírání souboru.\n");
+        exit(1);
+    }
+
+    TGAHeader header = {
+        .id_length = 0,
+        .color_map_type = 0,
+        .image_type = 2,
+        .color_map = {0, 0, 0, 0, 0},
+        .x_origin = {0, 0},
+        .y_origin = {0, 0},
+        .width = {width & 0xFF, (width >> 8) & 0xFF},
+        .height = {height & 0xFF, (height >> 8) & 0xFF},
+        .depth = 32,
+        .descriptor = 8};
+
+    fwrite(&header, sizeof(TGAHeader), 1, tgaFile);
+
+    for (int i = 0; i < width * height; ++i)
+    {
+        fwrite(&pixels[i].blue, sizeof(byte), 1, tgaFile);
+        fwrite(&pixels[i].green, sizeof(byte), 1, tgaFile);
+        fwrite(&pixels[i].red, sizeof(byte), 1, tgaFile);
+        fwrite(&pixels[i].alpha, sizeof(byte), 1, tgaFile);
+    }
+
+    fclose(tgaFile);
+}
+
+void clear(int width, int height, Pixel *pixels){
+     for (int i = 0; i < width * height; ++i)
+    {
+        pixels[i].red = 0;
+        pixels[i].green = 0;
+        pixels[i].blue = 0;
+        pixels[i].alpha = 255;
+    }
+}
+
+void drawLine(int x1, int y1, int x2, int y2, int width, int height, Pixel *pixels, byte r, byte g, byte b, byte a)
+{   
+    
+    float alpha = a / 255.0;
+    // Bresenhamův algoritmus.
+    int dx = abs(x2 - x1);
+    int dy = abs(y2 - y1);
+    int sx = (x1 < x2) ? 1 : -1;
+    int sy = (y1 < y2) ? 1 : -1;
+    int err = dx - dy;
+
+    while (1)
+    {
+        // osetreni kresleni mimo platno
+        if (x1 >= 0 && x1 < width && height - 1 - y1 >= 0 && height - 1 - y1 < height) // Změna zde
+        {
+            int index = (height - 1 - y1) * width + x1;
+            pixels[index].red = alpha * r + (1.0 - alpha) * pixels[index].red;
+            pixels[index].green = alpha * g + (1.0 - alpha) * pixels[index].green;
+            pixels[index].blue = alpha * b + (1.0 - alpha) * pixels[index].blue;
+            pixels[index].alpha = 255;
+        }
+
+        if (x1 == x2 && y1 == y2)
+            break;
+
+        int e2 = 2 * err;
+        if (e2 > -dy)
+        {
+            err -= dy;
+            x1 += sx;
+        }
+        if (e2 < dx)
+        {
+            err += dx;
+            y1 += sy;
+        }
+    }
+  
+}
+
+void drawRectangle(int x, int y, int width, int height, int imgWidth, int imgHeight, Pixel *pixels, byte r, byte g, byte b, byte a)
+{
+    for (int i = 0; i < height; i++)
+    {
+        drawLine(x, y + i, x + width - 1, y + i, imgWidth, imgHeight, pixels, r, g, b, a);
+    }   
+}
+
+void drawCircle(int centerX, int centerY, int radius, int width, int height, Pixel *pixels, byte r, byte g, byte b, byte a)
+{   
+    float alpha = a / 255.0;
+    for (int y = 0; y < height; ++y)
+    {
+        for (int x = 0; x < width; ++x)
+        {
+            int dx = x - centerX;
+            int dy = centerY - y; // Změna zde
+
+            if (dx * dx + dy * dy <= radius * radius)
+            {
+                int index = (height - 1 - y) * width + x; // Změna zde
+                pixels[index].red = alpha * r + (1.0 - alpha) * pixels[index].red;
+                pixels[index].green = alpha * g + (1.0 - alpha) * pixels[index].green;
+                pixels[index].blue = alpha * b + (1.0 - alpha) * pixels[index].blue;
+                pixels[index].alpha = 255;
+            }
+        }
+    }
+}
+
+void drawTriangle(int centerX, int centerY, int sideLength, int width, int height, Pixel *pixels, byte r, byte g, byte b, byte a)
+{
+    float alpha = a / 255.0;
+    float halfHeight = sideLength * sqrt(3) / 2.0;
+    float halfSide = sideLength / 2.0;
+    
+    for (int y = 0; y < height; ++y)
+    {
+        for (int x = 0; x < width; ++x)
+        {
+            // Transform pixel coordinates to triangle coordinates
+            float tx = x - centerX;
+            float ty = centerY - y +(halfHeight/2.5);
+
+            // Check if the pixel is inside the equilateral triangle
+            if (tx >= -halfSide && tx <= halfSide &&
+                ty >= 0 && ty <= halfHeight &&
+                ty <= -sqrt(3) * tx + sideLength * sqrt(3) / 2.0 &&
+                ty <= sqrt(3) * tx + sideLength * sqrt(3) / 2.0)
+            {
+                int index = (height - 1 - y) * width + x;
+                pixels[index].red = alpha * r + (1.0 - alpha) * pixels[index].red;
+                pixels[index].green = alpha * g + (1.0 - alpha) * pixels[index].green;
+                pixels[index].blue = alpha * b + (1.0 - alpha) * pixels[index].blue;
+                pixels[index].alpha = 255;
+            }
+        }
+    }
+}
+
+void drawRotatedRectangle(float angle, int x, int y, int width, int height, int imgWidth, int imgHeight, Pixel *pixels, byte r, byte g, byte b, byte a)
+{
+    float alpha = a / 255.0;
+
+    // prevod na radiany
+    float radians = angle * M_PI / 180.0;
+
+    // Calculate the center of the rectangle
+    float centerX = x + width / 2.0;
+    float centerY = y + height / 2.0;
+
+    // cyklus pre pixely...
+    for (int i = x; i < x + width; ++i)
+    {
+        for (int j = y; j < y + height; ++j)
+        {
+            // Translate the pixel to the origin (center of rotation)
+            float translatedX = i - centerX;
+            float translatedY = centerY - j; // Změna zde
+
+            // Rotate the pixel around the origin
+            float rotatedX = translatedX * cos(radians) - translatedY * sin(radians);
+            float rotatedY = translatedX * sin(radians) + translatedY * cos(radians);
+
+            // Translate the pixel back to its original position
+            int rotatedPixelX = rotatedX + centerX;
+            int rotatedPixelY = rotatedY + centerY;
+
+            // Check if the rotated pixel is within the image bounds
+            if (rotatedPixelX >= 0 && rotatedPixelX < imgWidth && rotatedPixelY >= 0 && rotatedPixelY < imgHeight)
+            {
+                // Update the pixel color
+                int index = (imgHeight - 1 - rotatedPixelY) * imgWidth + rotatedPixelX; // Změna zde
+                pixels[index].red = alpha * r + (1.0 - alpha) * pixels[index].red;
+                pixels[index].green = alpha * g + (1.0 - alpha) * pixels[index].green;
+                pixels[index].blue = alpha * b + (1.0 - alpha) * pixels[index].blue;
+                pixels[index].alpha = 255;
+            }
+        }
+    }
+}
