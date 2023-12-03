@@ -14,7 +14,7 @@ Jedná se o konzolovou aplikaci, sloužící k zakreslování, jednoduchých geo
 
 ukázka spuštění programu s parametry:
 `
-./projekt --output output.tga --width 400 --height 400==
+./projekt --output output.tga --width 400 --height 400
 `
 ## Popis příkazů
 - Všechny příkazy, až na "save" a "exit" mají 4 stejné parametry r, g, b, a.
