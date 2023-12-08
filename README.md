@@ -63,6 +63,7 @@ triangle 50,50,20,0,255,0,255
 rotated-rectangle 45,80,80,50,50,255,0,255,128
 exit
 ```
+
 - ./projekt je samotné spuštění programu, soubor o šířce 900 a výšce 450 se bude ukládat do souboru out.tga
 - line vykreslí čáru z bodu 10,10 do bodu 50,40 o barvě 255,255,0 a hodnotě alpha 255
 - vyčistí plátno (černou barvou)

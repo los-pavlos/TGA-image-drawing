@@ -153,10 +153,13 @@ void drawTriangle(int centerX, int centerY, int sideLength, int width, int heigh
 }
 
 void drawRotatedRectangle(float angle, int x, int y, int width, int height, int imgWidth, int imgHeight, Pixel *pixels, byte r, byte g, byte b, byte a)
-{
+{   
+
     float alpha = a / 255.0;
 
     // prevod na radiany
+    angle=(int)angle%360;
+    angle=360-angle;
     float radians = angle * M_PI / 180.0;
 
     float centerX = x + (width / 2.0);
