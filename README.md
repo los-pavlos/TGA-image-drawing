@@ -21,7 +21,7 @@ ukázka spuštění programu s parametry:
 ./projekt --output output.tga --width 400 --height 400
 `
 ## Popis příkazů
-- Všechny příkazy, až na "save" a "exit" mají 4 stejné parametry r, g, b, a.
+- Všechny příkazy, až na "save", "exit" a "clear" mají 4 stejné parametry r, g, b, a.
 - r,g,b určují barvu vykresleného obrazce ve formátu RGB a parametr a určuje průhlednost 
 tyto parametry mají rozsah 0 až 255
 - veškeré parametry musí být odděleny čárkami
@@ -29,6 +29,8 @@ tyto parametry mají rozsah 0 až 255
 uloží obrázek do souboru
 ### exit
 uloží obrázek do souboru a ukončí program
+### clear
+vyčistí plátno
 ### line
 Vykreslí čáru z bodu x1, y1 do bodu x2, y2
 ##### Pořadí parametrů
@@ -53,6 +55,7 @@ Vykreslí orotovaný obdelník se středem v bodě x, y o sířce width, výšce
 ```
 ./projekt --output out.tga --width 900 --height 450
 line 10,10,50,40,255,255,0,255
+clear
 rectangle 10,10,100,100,255,0,0,255
 save
 circle 20,20,40,120,120,120,128
@@ -62,6 +65,7 @@ exit
 ```
 - ./projekt je samotné spuštění programu, soubor o šířce 900 a výšce 450 se bude ukládat do souboru out.tga
 - line vykreslí čáru z bodu 10,10 do bodu 50,40 o barvě 255,255,0 a hodnotě alpha 255
+- vyčistí plátno (černou barvou)
 - rectangle vykreslí obdelník s levým horním rohem v bodě 10,10 šířce 100, výšce 100 o barvě 255,0,0 a hodnotě alpha 255
 - save uloží obrázek na disk do souboru na adrese zadané při spuštění programu
 - circle vykreslí kruh se středem v bodě 20,20 s poloměrem 40 o barvě 120,120,120 a hodnotě alpha 128

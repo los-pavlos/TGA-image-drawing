@@ -40,7 +40,7 @@ void saveTGA(const char *filename, int width, int height, Pixel *pixels)
 
     fclose(tgaFile);
 }
-
+// vycisteni platna
 void clear(int width, int height, Pixel *pixels){
      for (int i = 0; i < width * height; ++i)
     {
@@ -159,32 +159,31 @@ void drawRotatedRectangle(float angle, int x, int y, int width, int height, int 
     // prevod na radiany
     float radians = angle * M_PI / 180.0;
 
-    // Calculate the center of the rectangle
-    float centerX = x + width / 2.0;
-    float centerY = y + height / 2.0;
+    float centerX = x + (width / 2.0);
+    float centerY = y + (height / 2.0);
 
-    // cyklus pre pixely...
+    
     for (int i = x; i < x + width; ++i)
     {
         for (int j = y; j < y + height; ++j)
         {
-            // Translate the pixel to the origin (center of rotation)
+            // rotace...
             float translatedX = i - centerX;
-            float translatedY = centerY - j; // Změna zde
+            float translatedY = centerY - j;
 
-            // Rotate the pixel around the origin
+            
             float rotatedX = translatedX * cos(radians) - translatedY * sin(radians);
             float rotatedY = translatedX * sin(radians) + translatedY * cos(radians);
 
-            // Translate the pixel back to its original position
-            int rotatedPixelX = rotatedX + centerX;
-            int rotatedPixelY = rotatedY + centerY;
+            
+            int rotatedPixelX = rotatedX + centerX - (width / 2.0);
+            int rotatedPixelY = rotatedY + centerY - (height / 2.0);
 
-            // Check if the rotated pixel is within the image bounds
+            // Kontrola zapisu mimo obrazek...
             if (rotatedPixelX >= 0 && rotatedPixelX < imgWidth && rotatedPixelY >= 0 && rotatedPixelY < imgHeight)
             {
                 // Update the pixel color
-                int index = (imgHeight - 1 - rotatedPixelY) * imgWidth + rotatedPixelX; // Změna zde
+                int index = (imgHeight - 1 - rotatedPixelY) * imgWidth + rotatedPixelX;
                 pixels[index].red = alpha * r + (1.0 - alpha) * pixels[index].red;
                 pixels[index].green = alpha * g + (1.0 - alpha) * pixels[index].green;
                 pixels[index].blue = alpha * b + (1.0 - alpha) * pixels[index].blue;

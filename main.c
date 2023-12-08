@@ -52,16 +52,18 @@ int main(int argc, char *argv[])
     while (1)
     {
         fgets(command, 101, stdin);
-        //                                                                 exit, save
+        //                                                                 exit, save, clear
         if (strcmp(command, "exit\n") == 0)
         {
             saveTGA(outputFilename, width, height, pixels);
             free(pixels);
             return 0;
         }
-        else if (strcmp(command, "save\n") == 0)
+        else if (strcmp(command, "save\n") == 0)    
         {
             saveTGA(outputFilename, width, height, pixels);
+        }else if (strcmp(command, "clear\n") == 0){
+            clear(width,height,pixels);
         }else{
         //      strtok tvaru
         char* tvar;
