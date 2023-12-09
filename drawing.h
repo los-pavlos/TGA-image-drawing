@@ -29,7 +29,7 @@ typedef struct
     byte red;
     byte alpha;
 } Pixel;
-
+void vykreslovani(Pixel* pixels, int width, int height, char *command);
 void swapInt(int *a, int *b);
 void saveTGA(const char *filename, int width, int height, Pixel *pixels);
 void clear(int width, int height, Pixel *pixels);
@@ -39,6 +39,5 @@ void drawCircle(int centerX, int centerY, int radius, int width, int height, Pix
 void drawTriangle(int centerX, int centerY, int sideLength, int width, int height, Pixel *pixels, byte r, byte g, byte b, byte a);
 void drawFilledEquilateralTriangle(int centerX, int centerY, int sideLength, int width, int height, Pixel *pixels, byte r, byte g, byte b, byte a);
 void drawRotatedRectangle(float angle, int x, int y, int width, int height, int imgWidth, int imgHeight, Pixel *pixels, byte r, byte g, byte b, byte a);
-
 
 
