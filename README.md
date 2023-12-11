@@ -14,7 +14,7 @@ Jedná se o konzolovou aplikaci, sloužící k zakreslování jednoduchých geom
 --width zde uveďte šířku obrázku v pixelech
 
 --height zde uveďte výšku programu v pixelech
-
+projekt
 ukázka spuštění programu s parametry:
 
 `

@@ -1,3 +1,5 @@
+#ifndef DRAWING_H_
+#define DRAWING_H_
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -37,7 +39,5 @@ void drawLine(int x1, int y1, int x2, int y2, int width, int height, Pixel *pixe
 void drawRectangle(int x, int y, int width, int height, int imgWidth, int imgHeight, Pixel *pixels, byte r, byte g, byte b, byte a);
 void drawCircle(int centerX, int centerY, int radius, int width, int height, Pixel *pixels, byte r, byte g, byte b, byte a);
 void drawTriangle(int centerX, int centerY, int sideLength, int width, int height, Pixel *pixels, byte r, byte g, byte b, byte a);
-void drawFilledEquilateralTriangle(int centerX, int centerY, int sideLength, int width, int height, Pixel *pixels, byte r, byte g, byte b, byte a);
 void drawRotatedRectangle(float angle, int x, int y, int width, int height, int imgWidth, int imgHeight, Pixel *pixels, byte r, byte g, byte b, byte a);
-
-
+#endif

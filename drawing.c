@@ -55,7 +55,7 @@ void clear(int width, int height, Pixel *pixels){
 void vykreslovani(Pixel* pixels, int width, int height, char *command){
     char* tvar;
         tvar = strtok(command, " ");
-        //      nacteni parametru tvaru
+        //          nacteni parametru tvaru
         int par[MAX_ARGUMENT_COUNT];
         for(int i=0;i<MAX_ARGUMENT_COUNT;i++){
             par[i]=-1;
