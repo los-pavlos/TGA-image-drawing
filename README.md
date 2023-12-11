@@ -3,27 +3,32 @@ Jedná se o konzolovou aplikaci, sloužící k zakreslování jednoduchých geom
 
 ## spuštění programu
 1. přesunout se v konzoli do adresáře, kde jou uloženy soubory main.c, drawing.h, drawing.c, Makefile
-2. pomocí příkazu make se všechny nezbytné soubory přeloží na spustitelný soubor projekt
+2. pomocí příkazu make se všechny nezbytné soubory přeloží na spustitelný soubor "kresleni"
 (předpokladem je, že máte nainstalovaný překladač gcc)
-3. pomocí příkazu ./projekt spustíte program
+3. pomocí příkazu ./kresleni spustíte program
 ### parametry programu
 - tyto parametry je nutno uvést při spuštění programu
  
---output zde uveďte kde chcete výstupní TGA soubor uložit a jeho název
-  
---width zde uveďte šířku obrázku v pixelech
+<b>--output vystupni.tga</b><br>
+na místo "vystupni.tga" zadejte název vašeho výstupního TGA soboru
 
---height zde uveďte výšku programu v pixelech
+  
+<b>--width sirka</b><br>
+na místo "sirka" zadejte vámi požadovanou šířku obrázku v pixelech
+
+<b>--height vyska</b><br> 
+na místo "vyska" zadejte šířku obrázku v pixelech
 projekt
+
 ukázka spuštění programu s parametry:
 
 `
-./projekt --output output.tga --width 400 --height 400
+./kresleni --output output.tga --width 400 --height 400
 `
-## Popis příkazů
+## Popis jednotlivých příkazů
 - Všechny příkazy, až na "save", "exit" a "clear" mají 4 stejné parametry r, g, b, a.
-- r,g,b určují barvu vykresleného obrazce ve formátu RGB a parametr a určuje průhlednost 
-tyto parametry mají rozsah 0 až 255
+- r,g,b určují barvu vykresleného obrazce ve formátu RGB a parametr a určuje průhlednost<br>
+<b>tyto 4 parametry mají rozsah 0 až 255</b>
 - veškeré parametry musí být odděleny čárkami
 ### save
 uloží obrázek do souboru
@@ -33,27 +38,22 @@ uloží obrázek do souboru a ukončí program
 vyčistí plátno
 ### line
 Vykreslí čáru z bodu x1, y1 do bodu x2, y2
-##### Pořadí parametrů
-- x1,y1,x2,y2,r,g,b,a
+<br><b>Pořadí parametrů: x1,y1,x2,y2,r,g,b,a</b>
 ### rectangle
 Vykreslí obdelník s levým horním rohem v bodě x, y o sířce width a výšce height
-##### Pořadí parametrů
-- x,y,width,height,r,g,b,a
+<br><b>Pořadí parametrů: x,y,width,height,r,g,b,a</b>
 ### circle
 Vykreslí kruh se středem v bodě x, y o poloměru radius
-##### Pořadí parametrů
-- x,y,radius,r,g,b,a
+<br><b>Pořadí parametrů: x,y,radius,r,g,b,a</b>
 ### triangle
 Vykreslí rovnostranný trojuhelník se středem v bodě x, y o poloměru width
-##### Pořadí parametrů
-- x,y,width,r,g,b,a
+<br><b>Pořadí parametrů: x,y,width,r,g,b,a</b>
 ### rotated-rectangle
 Vykreslí orotovaný obdelník se středem v bodě x, y o sířce width, výšce height a rotací angle
-##### Pořadí parametrů
-- angle,x,y,width,height,r,g,b,a
+<br><b>Pořadí parametrů: angle,x,y,width,height,r,g,b,a</b>
 ## ukázkové použití
 ```
-./projekt --output out.tga --width 900 --height 450
+./kresleni --output out.tga --width 900 --height 450
 line 10,10,50,40,255,255,0,255
 clear
 rectangle 10,10,100,100,255,0,0,255
@@ -64,7 +64,7 @@ rotated-rectangle 45,80,80,50,50,255,0,255,128
 exit
 ```
 
-- ./projekt je samotné spuštění programu, soubor o šířce 900 a výšce 450 se bude ukládat do souboru out.tga
+- ./kresleni je samotné spuštění programu, soubor o šířce 900 a výšce 450 se bude ukládat do souboru out.tga
 - line vykreslí čáru z bodu 10,10 do bodu 50,40 o barvě 255,255,0 a hodnotě alpha 255
 - vyčistí plátno (černou barvou)
 - rectangle vykreslí obdelník s levým horním rohem v bodě 10,10 šířce 100, výšce 100 o barvě 255,0,0 a hodnotě alpha 255

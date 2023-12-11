@@ -3,8 +3,8 @@ CC=gcc
 # flagy
 CFLAGS= -fsanitize=address -g -Werror=vla -lm
 
-program: main.o drawing.o
-	$(CC) $(CFLAGS) main.o drawing.o -o program
+kresleni: main.o drawing.o
+	$(CC) $(CFLAGS) main.o drawing.o -o kresleni
 
 main.o : main.c
 	$(CC) $(CFLAGS) -c main.c
@@ -14,5 +14,5 @@ drawing.o : drawing.c
 
 clean:
 	rm *.o
-	rm program
+	rm kresleni
 
