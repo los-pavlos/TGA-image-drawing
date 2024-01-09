@@ -1,57 +1,57 @@
-# Kreslení TGA Obrázků
-Jedná se o konzolovou aplikaci, sloužící k zakreslování jednoduchých geometrických obrázců do TGA obrázku. Uživatel zakresluje tvary do obrázku pomocí funkcí s parametry.
+# Drawing TGA Pictures
+It is a console application used to draw simple geometric figures into a TGA image. The user draws shapes into the image using functions with parameters.
 
-## spuštění programu
-1. přesunout se v konzoli do adresáře, kde jou uloženy soubory main.c, drawing.h, drawing.c, Makefile
-2. pomocí příkazu make se všechny nezbytné soubory přeloží na spustitelný soubor "kresleni"
-(předpokladem je, že máte nainstalovaný překladač gcc)
-3. pomocí příkazu ./kresleni spustíte program
-### parametry programu
-- tyto parametry je nutno uvést při spuštění programu
+## start the program
+1. move in the console to the directory where the files main.c, drawing.h, drawing.c, Makefile are stored
+2. using the make command, all necessary files are translated into an executable file "drawing"
+(assuming you have the gcc compiler installed)
+3. use the command ./kresleni to run the program
+### program parameters
+- these parameters must be specified when starting the program
  
-<b>--output vystupni.tga</b><br>
-na místo "vystupni.tga" zadejte název vašeho výstupního TGA soboru
+<b>--output "output.tga"</b><br>
+enter the name of your output TGA file instead of "output.tga".
 
   
-<b>--width sirka</b><br>
-na místo "sirka" zadejte vámi požadovanou šířku obrázku v pixelech
+<b>--width "width"</b><br>
+enter the desired width of the image in pixels instead of "sirka".
 
-<b>--height vyska</b><br> 
-na místo "vyska" zadejte šířku obrázku v pixelech
-projekt
+<b>--height "height"</b><br>
+enter the width of the image in pixels instead of "height".
+project
 
-ukázka spuštění programu s parametry:
+example of running the program with parameters:
 
 `
 ./kresleni --output output.tga --width 400 --height 400
 `
-## Popis jednotlivých příkazů
-- Všechny příkazy, až na "save", "exit" a "clear" mají 4 stejné parametry r, g, b, a.
-- r,g,b určují barvu vykresleného obrazce ve formátu RGB a parametr a určuje průhlednost<br>
-<b>tyto 4 parametry mají rozsah 0 až 255</b>
-- veškeré parametry musí být odděleny čárkami
+## Description of individual commands
+- All commands, except for "save", "exit" and "clear" have the same 4 parameters r, g, b, a.
+- r,g,b determine the color of the rendered image in RGB format and the a parameter determines the transparency<br>
+<b>these 4 parameters range from 0 to 255</b>
+- all parameters must be separated by commas
 ### save
-uloží obrázek do souboru
+saves the image to a file
 ### exit
-uloží obrázek do souboru a ukončí program
+saves the image to a file and exits the program
 ### clear
-vyčistí plátno
+cleans the canvas
 ### line
-Vykreslí čáru z bodu x1, y1 do bodu x2, y2
-<br><b>Pořadí parametrů: x1,y1,x2,y2,r,g,b,a</b>
+Draws a line from x1, y1 to x2, y2
+<br><b>Order of parameters: x1,y1,x2,y2,r,g,b,a</b>
 ### rectangle
-Vykreslí obdelník s levým horním rohem v bodě x, y o sířce width a výšce height
-<br><b>Pořadí parametrů: x,y,width,height,r,g,b,a</b>
+Draws a rectangle with the upper left corner at point x, y with width width and height height
+<br><b>Order of parameters: x,y,width,height,r,g,b,a</b>
 ### circle
-Vykreslí kruh se středem v bodě x, y o poloměru radius
-<br><b>Pořadí parametrů: x,y,radius,r,g,b,a</b>
+Draws a circle centered at x, y with radius radius
+<br><b>Parameter order: x,y,radius,r,g,b,a</b>
 ### triangle
-Vykreslí rovnostranný trojuhelník se středem v bodě x, y o poloměru width
-<br><b>Pořadí parametrů: x,y,width,r,g,b,a</b>
+Draws an equilateral triangle centered at x, y with a radius of width
+<br><b>Parameter order: x,y,width,r,g,b,a</b>
 ### rotated-rectangle
-Vykreslí orotovaný obdelník se středem v bodě x, y o sířce width, výšce height a rotací angle
-<br><b>Pořadí parametrů: angle,x,y,width,height,r,g,b,a</b>
-## ukázkové použití
+Draws a rotated rectangle centered at x, y with width, height and rotation angle
+<br><b>Order of parameters: angle,x,y,width,height,r,g,b,a</b>
+## sample usage
 ```
 ./kresleni --output out.tga --width 900 --height 450
 line 10,10,50,40,255,255,0,255
@@ -64,12 +64,12 @@ rotated-rectangle 45,80,80,50,50,255,0,255,128
 exit
 ```
 
-- ./kresleni je samotné spuštění programu, soubor o šířce 900 a výšce 450 se bude ukládat do souboru out.tga
-- line vykreslí čáru z bodu 10,10 do bodu 50,40 o barvě 255,255,0 a hodnotě alpha 255
-- vyčistí plátno (černou barvou)
-- rectangle vykreslí obdelník s levým horním rohem v bodě 10,10 šířce 100, výšce 100 o barvě 255,0,0 a hodnotě alpha 255
-- save uloží obrázek na disk do souboru na adrese zadané při spuštění programu
-- circle vykreslí kruh se středem v bodě 20,20 s poloměrem 40 o barvě 120,120,120 a hodnotě alpha 128
-- triangle vykreslí rovnostranný trojúhelník se středem v bodě 50,50 o délce strany 20 o barvě 0,255,0 a hodnotě alpha 255
-- rotated-rectangle vykreslí obdelník se středem na pozici 80,80 s rotací 45 stupňů o šířce 50, výšce 50, barvě 255,0,255 a hodnotě alpha 128
-- exit uloží obrázek na disk do souboru na adrese zadané při spuštění programu a ukončí probram
+- ./kresleni run the program, a file with a width of 900 and a height of 450 will be saved in the out.tga file
+- line draws a line from point 10,10 to point 50,40 with color 255,255.0 and alpha value 255
+- cleans the canvas (with black paint)
+- rectangle renders a rectangle with the upper left corner at point 10,10, width 100, height 100, color 255,0,0 and alpha value 255
+- save saves the image on disk to a file at the address specified when the program is started
+- circle will draw a circle centered at point 20,20 with a radius of 40 with a color of 120,120,120 and an alpha value of 128
+- triangle renders an equilateral triangle centered at 50.50, side length 20, color 0.255.0, and alpha 255
+- rotated-rectangle renders a rectangle centered at position 80,80 rotated 45 degrees with width 50, height 50, color 255,0,255 and alpha 128
+- exit saves the image on disk to a file at the address specified when the program is started and exits program
